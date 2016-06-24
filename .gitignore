@@ -1,0 +1,11 @@
+
+# python intermediate files
+*.py[co]
+__pycache__
+
+# project files
+.spyderproject
+
+# output files
+*.csv
+*.json
