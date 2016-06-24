@@ -8,7 +8,7 @@
 
 from datetime import date, datetime
 from scrapy.exceptions import DropItem
-from .mappings import DISTRICTS, MEROJOB_INDUSTRY
+from .mappings import DISTRICTS, INDUSTRY_FILTERS
 
 
 class CleanDataPipeline(object):
@@ -51,16 +51,18 @@ class NormalizeDistrictPipeline(object):
 class FilterIndustryPipeline(object):
     
     def process_item(self, item, spider):
-        if item['industry']:
-            _found = False
-            for industry, listings in MEROJOB_INDUSTRY.items():
-                if item['industry'].strip() in listings:
-                    item['industry'] = industry
-                    _found = True
-            if not _found:
-                raise DropItem("Dropping...")
-        else:
-            raise DropItem("dropping...")
+        industries = INDUSTRY_FILTERS[spider.name]
+        if industries:
+            if item['industry']:
+                _found = False
+                for industry, listings in industries.items():
+                    if item['industry'].strip() in listings:
+                        item['industry'] = industry
+                        _found = True
+                if not _found:
+                    raise DropItem("Dropping...")
+            else:
+                raise DropItem("dropping...")
         return item
 
 

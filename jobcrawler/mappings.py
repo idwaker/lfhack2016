@@ -17,11 +17,14 @@ _DISTRICTS = (
 
 DISTRICTS = (d.lower() for d in _DISTRICTS)
 
-MEROJOB_INDUSTRY = {
-    'Bank, Finance & Insurance': ('Banks', 'Finance Companies', 
-                                  'Insurance Companies'),
-    'IT, Software & Telecommunication': (
-        'Information / Computer / Technology', 'Software Companies',
-        'Hardware / Network Companies', 'ISP', 'Telecommunication',                                     
-    ),
+INDUSTRY_FILTERS = {
+    'merojob': {
+        'Bank, Finance & Insurance': ('Banks', 'Finance Companies', 
+                                      'Insurance Companies'),
+        'IT, Software & Telecommunication': (
+            'Information / Computer / Technology', 'Software Companies',
+            'Hardware / Network Companies', 'ISP', 'Telecommunication',                                     
+        ),
+    },
+    'ramrojob': {}
 }
