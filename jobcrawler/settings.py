@@ -66,7 +66,7 @@ ITEM_PIPELINES = {
     'jobcrawler.pipelines.NormalizeDatePipeline': 300,
     'jobcrawler.pipelines.NormalizeDistrictPipeline': 300,
     'jobcrawler.pipelines.FilterIndustryPipeline': 400,
-#    'jobcrawler.pipelines.FilterCategoryPipeline': 400,
+    'jobcrawler.pipelines.FilterCategoryPipeline': 450,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

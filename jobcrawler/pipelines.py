@@ -8,7 +8,7 @@
 
 from datetime import date, datetime
 from scrapy.exceptions import DropItem
-from .mappings import DISTRICTS, INDUSTRY_FILTERS
+from .mappings import DISTRICTS, INDUSTRY_FILTERS, CATEGORY_FILTERS
 
 
 class CleanDataPipeline(object):
@@ -56,7 +56,7 @@ class FilterIndustryPipeline(object):
             if item['industry']:
                 _found = False
                 for industry, listings in industries.items():
-                    if item['industry'].strip() in listings:
+                    if item['industry'].strip().lower() in (x.lower() for x in listings):
                         item['industry'] = industry
                         _found = True
                 if not _found:
@@ -69,4 +69,16 @@ class FilterIndustryPipeline(object):
 class FilterCategoryPipeline(object):
     
     def process_item(self, item, spider):
-        pass
+        categories = CATEGORY_FILTERS[spider.name]
+        if categories:
+            if item['category']:
+                _found = False
+                for category, listings in categories.items():
+                    if item['category'].strip().lower() in (x.lower() for x in listings):
+                        item['category'] = category
+                        _found = True
+                if not _found:
+                    raise DropItem("Dropping...")
+            else:
+                raise DropItem("dropping...")
+        return item
