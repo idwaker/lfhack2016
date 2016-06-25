@@ -26,5 +26,11 @@ INDUSTRY_FILTERS = {
             'Hardware / Network Companies', 'ISP', 'Telecommunication',                                     
         ),
     },
-    'ramrojob': {}
+    'ramrojob': {
+        'Bank, Finance & Insurance': ('Bank', 'Insurance', 'Finance Company',
+                                      'Investment Company', 'Remittance',
+                                      'Accounting / Audit'),
+        'IT, Software & Telecommunication': ('Information Technology / Software',
+                                             'Telecommunication', 'E-commerce / Online Store')
+    }
 }
