@@ -87,3 +87,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+import os
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+FEED_URI='file://' + os.path.join(project_path, 'output-final.json') 
+FEED_FORMAT='jsonlines'
