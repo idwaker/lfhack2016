@@ -48,7 +48,9 @@ class RamroJobSpider(scrapy.Spider):
         if content_div:
             title = response.css('h1.red-title::text').extract()[0]
             title = re.sub(r'\s+', ' ', title)
-            item['title'] = title.strip().strip('Job Position :')
+            title = re.sub(r'Job Position', '', title)
+            title = re.sub(r':', '', title)
+            item['title'] = title.strip()
             
             # Job Location: Kathmandu
             location_xpath = '//table/tr/td[contains(text(), "Job Location")]/following-sibling::td[2]/text()'
